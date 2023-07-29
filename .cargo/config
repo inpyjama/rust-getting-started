@@ -1,0 +1,10 @@
+[build]
+target = "thumbv7em-none-eabihf"
+rustflags = ["-Clink-args=-Wl,-Map=./app.map"]
+
+[target.thumbv7em-none-eabihf]
+rustflags = ["-Clink-arg=-Tlinker.x"]
+
+[target.thumbv7m-none-eabi]
+# uncomment this to make `cargo run` execute programs on QEMU
+runner = "qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic -semihosting-config enable=on,target=native -gdb tcp::3333 -S -kernel"
